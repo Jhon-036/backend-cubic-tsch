@@ -2,11 +2,13 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './src/config/database.js'
 import router from './src/routers/productsRouters.js'
+import { corsConfig } from './src/middleware/corsConfig.js'
 
 const app = express()
 dotenv.config()
 app.use(express.json())
-app.use('/api/v1', router)
+app.use(corsConfig)
+app.use('/tsch/api/v1', router)
 
 const PORT = process.env.PORT
 if (!PORT) {
