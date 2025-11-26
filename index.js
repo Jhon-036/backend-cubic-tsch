@@ -1,10 +1,9 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './src/config/database.js'
-import router from './src/routers/productsRouters.js'
+import router from './src/routers/routes.js'
 import { corsConfig } from './src/middleware/corsConfig.js'
 import { limit } from './src/middleware/rateLimit.js'
-import { edgeGuard } from './src/middleware/edgeGuard.js'
 
 const app = express()
 dotenv.config()
@@ -13,7 +12,7 @@ dotenv.config()
 app.use(express.json())
 app.use(corsConfig)
 app.use(limit)
-app.use('/v1', edgeGuard, router)
+app.use('/api/v1', router)
 
 const PORT = process.env.PORT
 if (!PORT) {

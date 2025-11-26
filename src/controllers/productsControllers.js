@@ -32,16 +32,17 @@ export const getProduct = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     // obtenemos la data del front
-    const { name, description, category } = req.body
+    const { name, description, partno, category } = req.body
     // validamos campos vacios
     if (!name || !description || !category) {
-      return res.status(400).send('Datos incompletos')
+      return res.status(400).send('Todos los campos son obligatorios')
     }
     // declaramos nueva schema de Product con url de cloudinaty
     const product = new Product({
       name, 
       description, 
       category,
+      partno,
       image: req.file.path, // source_url
       imagePublicId: req.file.filename // public_id (products/name_file)
     })
@@ -77,7 +78,7 @@ export const updateProduct = async (req, res) => {
       data.imagePublicId = req.file.filename  // public_id
     }
     const productUpdated = await Product.findByIdAndUpdate(id, data)
-    res.status(200).json({message:'Producto actualizado', product: productUpdated})
+    res.status(200).json({ message: 'Producto actualizado', product: productUpdated })
   } catch (err) {
     res.status(400).send('Error al actualizar el producto')
     console.error('> Error al actualizar el producto', err)
@@ -103,6 +104,6 @@ export const deleteProduct = async (req, res) => {
     res.status(200).json({ message: "Producto eliminado", producto: productDeleted })
   } catch (err) {
     res.status(400).send('Error al eliminar el producto')
-    console.error('> Error al el producto', err)
+    console.log('> Error al el producto', err)
   }
 }

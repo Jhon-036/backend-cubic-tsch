@@ -1,11 +1,7 @@
 import mongoose from "mongoose"
 
-const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  description: {
+const postSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true
   },
@@ -13,8 +9,13 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  partno:{
-    type: Number
+  resume: {
+    type: String,
+    required: true
+  },
+  fullContent: {
+    type: String,
+    required: true
   },
   image: {
     type: String
@@ -26,16 +27,13 @@ const productSchema = new mongoose.Schema({
   timestamps: true // agrega fechaCreacion y fechaUltimaActualizacion
 })
 
-productSchema.set('toJSON', {
+postSchema.set('toJSON', {
   transform: (doc, ret) => {
     ret.id = ret._id
     delete ret._id
     delete ret.__v
-    delete ret.imagePublicId
-    delete ret.createdAt
-    delete ret.updatedAt
     return ret
   }
 })
 
-export default mongoose.model('Product', productSchema)
+export default mongoose.model('Post', postSchema)
