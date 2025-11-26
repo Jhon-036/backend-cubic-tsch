@@ -23,7 +23,7 @@ router.post('/posts', upload.single('image'), createPost)
 router.put('/posts/:id', upload.single('image'), updatePost)
 router.delete('/posts/:id', deletePost)
 
-router.get('/orders,', getOrders)
+router.get('/orders', getOrders)
 router.get('/orders/stats/month', getMonthlyOrdersStats )
 router.post('/orders', createOrder)
 
