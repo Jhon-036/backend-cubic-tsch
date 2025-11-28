@@ -12,7 +12,7 @@ router.post('/auth/login', loginUser)
 router.post('/auth/register', registerUser)
 
 router.get('/products', getProducts)
-router.get('/products/:id', AuthJwt, getProduct)
+router.get('/products/:id', getProduct)
 router.post('/products', upload.single('image'), AuthJwt, createProduct)
 router.put('/products/:id', upload.single('image'), AuthJwt, updateProduct)
 router.delete('/products/:id', AuthJwt, deleteProduct)
