@@ -32,7 +32,7 @@ export const getProduct = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     // obtenemos la data del front
-    const { name, description, partno, category } = req.body
+    const { name, descriptionShort, description, partno, category } = req.body
     // validamos campos vacios
     if (!name || !description || !category) {
       return res.status(400).send('Todos los campos son obligatorios')
@@ -40,6 +40,7 @@ export const createProduct = async (req, res) => {
     // declaramos nueva schema de Product con url de cloudinaty
     const product = new Product({
       name, 
+      descriptionShort,
       description, 
       category,
       partno,
