@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
     required: true
   },
   partno:{
-    type: Number
+    type: String
   },
   image: {
     type: String
